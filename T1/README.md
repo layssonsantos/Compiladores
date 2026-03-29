@@ -79,6 +79,18 @@ java -jar target/t1-1.0-SNAPSHOT-jar-with-dependencies.jar exemplos/entrada.txt 
 
 ---
 
+## ⚙️ Comportamento da Execução
+
+O analisador léxico implementado possui o seguinte comportamento durante a execução:
+
+- Realiza a leitura de um arquivo de entrada contendo um programa escrito na linguagem LA.
+- Processa o conteúdo e identifica os tokens conforme as regras definidas na gramática.
+- Escreve o resultado da análise em um arquivo de saída especificado pelo usuário.
+- Interrompe imediatamente a execução ao encontrar o primeiro erro léxico.
+- Produz a saída no formato exigido pelo corretor automático da disciplina.
+
+---
+
 ## 🧪 Casos de Teste
 
 Casos de teste adicionais estão disponíveis neste link fornecido pelo professor:
