@@ -44,7 +44,7 @@ git clone https://git@github.com:layssonsantos/Compiladores.git
 Navegue até o diretório do projeto:
 
 ```bash
-cd T1/
+cd Compiladores/T1/
 ```
 
 ---
