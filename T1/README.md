@@ -13,7 +13,7 @@ O trabalho 1 (T1) da disciplina consiste em implementar um analisador léxico pa
 - Apache Maven 3.x
 - ANTLR 4 (gerenciado via Maven)
 - Git (clonagem do repositório)
-
+- Não é necessária configuração adicional além de ter o Java e o Maven corretamente instalados e disponíveis no ```PATH```.
 ---
 
 ## 📁 Estrutura do Projeto
@@ -38,13 +38,13 @@ T1/
 Abra o terminal e execute:
 
 ```bash
-git clone https://git@github.com:layssonsantos/Compiladores.git
+git clone git@github.com:layssonsantos/Compiladores.git
 ```
 
 Navegue até o diretório do projeto:
 
 ```bash
-cd Compiladores/T1/
+cd Compiladores/T1
 ```
 
 ---
