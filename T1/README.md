@@ -20,12 +20,19 @@ O trabalho 1 (T1) da disciplina consiste em implementar um analisador léxico pa
 ``` bash
 T1/
 ├── src/
-│ └── main/
-│ ├── java/
-│ │ └── br/ufscar/compiladores/t1/
-│ │ └── AnalisadorLexico.java
-│ └── antlr4/
-│ └── AnalisadorLexicoLA.g4
+│   └── main/
+│       ├── antlr4/
+│       │   └── br/
+│       │       └── ufscar/
+│       │           └── compiladores/
+│       │               └── t1/
+│       │                   └── AnalisadorLexicoLA.g4
+│       └── java/
+│           └── br/
+│               └── ufscar/
+│                   └── compiladores/
+│                       └── t1/
+│                           └── AnalisadorLexico.java
 ├── target/
 ├── pom.xml
 └── README.md
