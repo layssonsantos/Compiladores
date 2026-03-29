@@ -7,7 +7,7 @@ O trabalho 1 (T1) da disciplina consiste em implementar um analisador léxico pa
 
 ---
 
-## Requisitos
+## 📋 Requisitos
 
 - Java JDK 11 ou superior
 - Apache Maven 3.x
