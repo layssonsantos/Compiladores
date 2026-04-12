@@ -91,7 +91,7 @@ java -jar <caminho_do_jar> <arquivo_entrada> <arquivo_saida>
 ```
 
 - `<entrada.txt>`: Caminho para o arquivo de entrada (código em Linguagem Algorítmica)
-- `<saida.txt>`: Caminho para o arquivo de saída (lista de tokens)
+- `<saida.txt>`: Caminho para o arquivo de saída (resultado da análise sintática ou mensagem de erro)
 
 ### ✅ Exemplo
 
