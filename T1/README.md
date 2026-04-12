@@ -1,7 +1,10 @@
-### 📌 1. Trabalho 1 - Compiladores (Analisador Léxico)
+### 📚 1. Trabalho 1 - Compiladores (Analisador Léxico)
 
+![Java](https://img.shields.io/badge/Java-17+-blue)
+![Maven](https://img.shields.io/badge/Maven-3.8+-orange)
+![ANTLR](https://img.shields.io/badge/ANTLR-4-red)
 
-## Descrição
+## 📌 Descrição
 
 O trabalho 1 (T1) da disciplina consiste em implementar um analisador léxico para a linguagem LA (Linguagem Algorítmica) desenvolvida pelo prof. Jander, no âmbito do DC/UFSCar. O analisador léxico deve ler um programa-fonte e produzir uma lista de tokens identificados.
 

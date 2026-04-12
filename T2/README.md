@@ -109,8 +109,7 @@ O analisador sintático implementado possui o seguinte comportamento durante a e
 - Verifica se a estrutura do programa está de acordo com a gramática definida.
 - Identifica tokens inválidos e erros estruturais na entrada.
 - Interrompe imediatamente a execução ao encontrar o primeiro erro (léxico ou sintático).
-- Gera mensagens de erro no formato exigido pelo corretor automático da disciplina.
-- Escreve o resultado da análise exclusivamente em um arquivo de saída especificado pelo usuário.
+- Escreve o resultado da análise exclusivamente em um arquivo de saída especificado pelo usuário. (temp)
 - Não imprime nenhuma saída no terminal.
 - Ao final da execução (com ou sem erro), imprime:
 
