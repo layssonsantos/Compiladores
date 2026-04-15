@@ -6,7 +6,7 @@ Este repositório contém os trabalhos práticos da disciplina de Compiladores.
 Os trabalhos estão organizados em pastas:
 - T1: Analisador léxico para a linguagem LA 
 - T2: Analisador Sintático para a linguagem LA
-- T3: (a definir)
+- T3: Analisador Semântico para a linguagem LA
 - T4: (a definir)
 - T5: (a definir)
 ---
