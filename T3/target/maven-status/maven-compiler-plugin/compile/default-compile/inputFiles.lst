@@ -1,0 +1,11 @@
+/home/laysson/UFSCar/Compiladores/T3/target/generated-sources/antlr4/br/ufscar/dc/compiladores/t3/AnalisadorSemanticoLABaseListener.java
+/home/laysson/UFSCar/Compiladores/T3/src/main/java/br/ufscar/dc/compiladores/t3/Escopos.java
+/home/laysson/UFSCar/Compiladores/T3/src/main/java/br/ufscar/dc/compiladores/t3/Semantico.java
+/home/laysson/UFSCar/Compiladores/T3/src/main/java/br/ufscar/dc/compiladores/t3/SemanticoUtils.java
+/home/laysson/UFSCar/Compiladores/T3/target/generated-sources/antlr4/br/ufscar/dc/compiladores/t3/AnalisadorSemanticoLAParser.java
+/home/laysson/UFSCar/Compiladores/T3/target/generated-sources/antlr4/br/ufscar/dc/compiladores/t3/AnalisadorSemanticoLAListener.java
+/home/laysson/UFSCar/Compiladores/T3/target/generated-sources/antlr4/br/ufscar/dc/compiladores/t3/AnalisadorSemanticoLABaseVisitor.java
+/home/laysson/UFSCar/Compiladores/T3/target/generated-sources/antlr4/br/ufscar/dc/compiladores/t3/AnalisadorSemanticoLALexer.java
+/home/laysson/UFSCar/Compiladores/T3/target/generated-sources/antlr4/br/ufscar/dc/compiladores/t3/AnalisadorSemanticoLAVisitor.java
+/home/laysson/UFSCar/Compiladores/T3/src/main/java/br/ufscar/dc/compiladores/t3/AnalisadorSemantico.java
+/home/laysson/UFSCar/Compiladores/T3/src/main/java/br/ufscar/dc/compiladores/t3/TabelaDeSimbolos.java
