@@ -1,4 +1,4 @@
-# 📚 Compiladores - T3 (Analisador Semântico) - Parte 1
+# 📚 Compiladores - T4 (Analisador Semântico) - Parte 2
 
 ![Java](https://img.shields.io/badge/Java-17+-blue)
 ![Maven](https://img.shields.io/badge/Maven-3.8+-orange)
@@ -8,7 +8,7 @@
 
 ## 📌 Descrição
 
-O **Trabalho 3 (T3)** da disciplina consiste em implementar parte de um **analisador semântico** para a linguagem **LA (Linguagem Algorítmica)**, desenvolvida pelo prof. Jander, no âmbito do DC/UFSCar.
+O **Trabalho 4 (T4)** da disciplina consiste em implementar uma segunda parte **analisador semântico** para a linguagem **LA (Linguagem Algorítmica)**, desenvolvida pelo prof. Jander, no âmbito do DC/UFSCar.
 
 O analisador semântico deve ler um programa-fonte, percorrer sua árvore sintática e verificar regras de significado da linguagem, detectando inconsistências relacionadas a declarações, uso de identificadores e compatibilidade de tipos.
 
