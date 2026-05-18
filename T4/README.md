@@ -12,12 +12,26 @@ O **Trabalho 4 (T4)** da disciplina consiste em implementar uma segunda parte **
 
 O analisador semântico deve ler um programa-fonte, percorrer sua árvore sintática e verificar regras de significado da linguagem, detectando inconsistências relacionadas a declarações, uso de identificadores e compatibilidade de tipos.
 
-O objetivo é desenvolver um **analisador semântico**, incluindo:
+Nesta etapa, o projeto expande as verificações semânticas implementadas no T3, adicionando suporte para:
+
+- ponteiros
+- registros
+- funções
+- procedimentos
+- validação de parâmetros
+- validação de retornos
+
+O analisador semântico deve percorrer a árvore sintática gerada pelo parser e validar regras de significado da linguagem, detectando inconsistências relacionadas a escopo, tipos e chamadas de funções/procedimentos.
+
+O objetivo é desenvolver um **analisador semântico completo**, incluindo:
 
 - 🔹 Análise léxica integrada  
 - 🔹 Análise sintática integrada  
 - 🔹 Verificação semântica de identificadores e tipos  
-- 🔹 Controle de escopos  
+- 🔹 Controle de escopos aninhados  
+- 🔹 Verificação de ponteiros e registros  
+- 🔹 Validação de parâmetros formais e argumentos  
+- 🔹 Verificação de uso correto do comando `retorne`  
 - 🔹 Geração de mensagens de erro padronizadas  
 
 ---
@@ -38,7 +52,7 @@ Não é necessária configuração adicional além de ter o Java e o Maven corre
 ## 📁 Estrutura do Projeto
 
 ```bash
-T3/
+T4/
 ├── src/
 │   └── main/
 │       ├── antlr4/
@@ -46,14 +60,14 @@ T3/
 │       │       └── ufscar/
 │       │           └── dc/
 │       │               └── compiladores/
-│       │                   └── t3/
+│       │                   └── t4/
 │       │                       └── AnalisadorSemanticoLA.g4
 │       └── java/
 │           └── br/
 │               └── ufscar/
 │                   └── dc/
 │                       └── compiladores/
-│                           └── t3/
+│                           └── t4/
 │                               ├── AnalisadorSemantico.java
 │                               ├── Semantico.java
 │                               ├── SemanticoUtils.java
@@ -75,7 +89,7 @@ git clone git@github.com:layssonsantos/Compiladores.git
 Navegue até o diretório do projeto:
 
 ```bash
-cd Compiladores/T3
+cd Compiladores/T4
 ```
 
 ---
@@ -105,7 +119,7 @@ java -jar <caminho_do_jar> <arquivo_entrada> <arquivo_saida>
 ### ✅ Exemplo
 
 ```bash
-java -jar target/t3-1.0-SNAPSHOT-jar-with-dependencies.jar exemplos/entrada.txt exemplos/saida.txt 
+java -jar target/t4-1.0-SNAPSHOT-jar-with-dependencies.jar exemplos/entrada.txt exemplos/saida.txt 
 ```
 
 ---
@@ -115,11 +129,15 @@ O analisador semântico implementado possui o seguinte comportamento durante a e
 
 - Realiza a leitura de um arquivo de entrada contendo um programa escrito na linguagem LA.
 - Executa a análise léxica e sintática antes da etapa semântica.
-- Percorre a árvore sintática gerada pelo parser.
-- Controla escopos de variáveis, funções e procedimentos.
-- Verifica se identificadores foram declarados corretamente.
-- Verifica se tipos utilizados existem.
+- Percorre a árvore sintática gerada pelo parser utilizando Visitor do ANTLR.
+- Controla múltiplos escopos através de pilha de tabelas de símbolos.
+- Verifica declarações duplicadas no mesmo escopo.
+- Verifica identificadores não declarados.
+- Verifica tipos inexistentes.
 - Verifica compatibilidade de tipos em atribuições e expressões.
+- Verifica compatibilidade entre argumentos e parâmetros formais.
+- Verifica operações envolvendo ponteiros e registros.
+- Verifica uso correto do comando `retorne`.
 - Continua a análise mesmo após encontrar erros semânticos.
 - Escreve o resultado exclusivamente em arquivo de saída especificado pelo usuário.
 - Não imprime nenhuma saída no terminal.
@@ -128,6 +146,21 @@ O analisador semântico implementado possui o seguinte comportamento durante a e
 ```text
 Fim da compilacao
 ```
+---
+
+## ❌ Erros Semânticos Detectados
+
+O analisador implementa verificações para os seguintes tipos de erro:
+
+- Identificador já declarado anteriormente no mesmo escopo
+- Tipo não declarado
+- Identificador não declarado
+- Atribuição incompatível
+- Incompatibilidade entre argumentos e parâmetros
+- Uso inválido do comando `retorne`
+- Incompatibilidade envolvendo ponteiros
+- Incompatibilidade envolvendo registros
+
 ---
 
 ## 🧪 Casos de Teste
