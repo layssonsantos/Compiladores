@@ -21,10 +21,13 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
     // Escopos aninhados para análise auxiliar
     static Escopos escoposAninhados = new Escopos();
 
+    // Assinaturas de funções e procedimentos: nome -> lista de tipos de parâmetros
     static HashMap<String, ArrayList<TipoT4>> funcaoProcedimento = new HashMap<>();
 
+    // Definição de tipos registro nomeados: nome do tipo -> lista de (campo, tipo)
     HashMap<String, ArrayList<String>> tabelaRegistro = new HashMap<>();
     
+    // Referência ao escopo atual usado para inserções
     TabelaDeSimbolos tabelaEscopo;
 
     // Adiciona variável à tabela de símbolos
@@ -62,14 +65,14 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
         if (tipoItem == TipoT4.INVALIDO)
             adicionaErroSemantico(tipoT, "tipo " + tipo + " nao declarado");
 
-        // Adiciona se não existe, senão erro de redeclaração
+        // Adiciona se não existe, senão erro de redeclaração no escopo atual
         if (!tabelaEscopo.existe(nome))
             tabelaEscopo.adicionar(nome, tipoItem, tipoRegistro);
         else
             adicionaErroSemantico(nomeT, "identificador " + nome + " ja declarado anteriormente");
     }
 
-    // Visita o nó programa, inicializando tabela
+    // Verifica retorne no programa principal
     @Override
     public Void visitPrograma(AnalisadorSemanticoLAParser.ProgramaContext ctx) {
         for (AnalisadorSemanticoLAParser.CmdContext c : ctx.corpo().cmd())
@@ -87,6 +90,7 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
         String nomeVariavel;
                 
         if (ctx.getText().contains("declare")) {
+            // Declaração de variável local, com suporte a registros diretos
             if (ctx.variavel().tipo().registro() != null) {
                 for (AnalisadorSemanticoLAParser.IdentificadorContext ic : ctx.variavel().identificador()) {
                     adicionaVariavelTabela(ic.getText(), "registro", ic.getStart(), null, TipoRegistro.VARIAVEL);
@@ -128,6 +132,7 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
                 }
             }
         } else if (ctx.getText().contains("tipo")) {
+            // Define um tipo registro nomeado para uso posterior
             if (ctx.tipo().registro() != null) {
                 ArrayList<String> variaveisRegistro = new ArrayList<>();
                 
@@ -149,6 +154,7 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
     
     @Override
     public Void visitDeclaracao_global(AnalisadorSemanticoLAParser.Declaracao_globalContext ctx) {
+        // Abre escopo interno para função/procedimento e processa seus parâmetros
         escoposAninhados.criarNovoEscopo();
         
         tabela = escoposAninhados.obterEscopoAtual();
@@ -184,6 +190,7 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
                 if (c.cmdRetorne() != null)  
                     adicionaErroSemantico(c.getStart(), "comando retorne nao permitido nesse escopo");    
             
+            // Registra assinatura do procedimento na tabela global
             funcaoProcedimento.put(ctx.IDENT().getText(), tiposVariaveis);
         } else if (ctx.getText().contains("funcao")) {
             for (AnalisadorSemanticoLAParser.ParametroContext parametro : ctx.parametros().parametro()) {
@@ -211,8 +218,10 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
         
         super.visitDeclaracao_global(ctx);
         
+        // Fecha escopo interno da função/procedimento
         escoposAninhados.abandonarEscopo();
         
+        // Registra a própria função/procedimento no escopo externo
         if (ctx.getText().contains("procedimento"))      
             adicionaVariavelTabela(ctx.IDENT().getText(), "void", ctx.getStart(), ctx.getStart(), TipoRegistro.PROCEDIMENTO);
         else if (ctx.getText().contains("funcao"))
@@ -225,6 +234,7 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
     public Void visitCmdLeia(AnalisadorSemanticoLAParser.CmdLeiaContext ctx) {
         tabela = escoposAninhados.obterEscopoAtual();
         
+        // Verifica se todas as variáveis lidas já foram declaradas
         for (AnalisadorSemanticoLAParser.IdentificadorContext id : ctx.identificador()) 
             if (!tabela.existe(id.getText()))
                 adicionaErroSemantico(id.getStart(), "identificador " + id.getText() + " nao declarado");
@@ -236,6 +246,7 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
     public Void visitCmdEscreva(AnalisadorSemanticoLAParser.CmdEscrevaContext ctx) {
         tabela = escoposAninhados.obterEscopoAtual();
                 
+        // Verifica tipos das expressões passadas para escreva
         for (AnalisadorSemanticoLAParser.ExpressaoContext expressao : ctx.expressao())
             verificarTipo(tabela, expressao);
 
@@ -246,6 +257,7 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
     public Void visitCmdEnquanto(AnalisadorSemanticoLAParser.CmdEnquantoContext ctx) {
         tabela = escoposAninhados.obterEscopoAtual();
         
+        // Verifica se a expressão do enquanto é do tipo lógico
         verificarTipo(tabela, ctx.expressao());
         
         return super.visitCmdEnquanto(ctx);
@@ -255,6 +267,7 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
     public Void visitCmdSe(AnalisadorSemanticoLAParser.CmdSeContext ctx) {
         tabela = escoposAninhados.obterEscopoAtual();
         
+        // Verifica se a condição do if é do tipo lógico
         verificarTipo(tabela, ctx.expressao());
         
         return super.visitCmdSe(ctx);
