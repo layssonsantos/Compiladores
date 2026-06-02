@@ -32,7 +32,12 @@ public class Semantico extends AnalisadorSemanticoLABaseVisitor<Void> {
 
     // Adiciona variável à tabela de símbolos
     public void adicionaVariavelTabela(String nome, String tipo, Token nomeT, Token tipoT, TipoRegistro tipoRegistro) {
+        
         tabelaEscopo = escoposAninhados.obterEscopoAtual();
+
+        if (tipo.startsWith("^")) {
+            tipo = tipo.substring(1);
+        }
 
         TipoT4 tipoItem;
 
