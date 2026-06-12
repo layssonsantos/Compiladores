@@ -8,7 +8,7 @@ Os trabalhos estão organizados em pastas:
 - T2: Analisador Sintático para a linguagem LA
 - T3: Analisador Semântico para a linguagem LA (parte 1)
 - T4: Analisador Semântico para a linguagem LA (parte 2)
-- T5: (a definir)
+- T5: Gerador de código
 ---
 
 ## 👥 Integrantes do Grupo
